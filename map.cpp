@@ -1,4 +1,13 @@
+/* map should be something like this: */
+//  #####################
+//  #                   #
+//  #                   #
+//  #                   #
+//  #                   #
+//  #                   #
+//  #####################                 
 #include <iostream>
+#include <map.h>
 using namespace std;
 
 void init_map(int map[30][30]){

@@ -1,13 +1,25 @@
 #include <iostream>
+#include <conio.h>
 #include <time.h>
+#include <windows.h>
 #include <snack.h>
-#include <snack.cpp>
-#include <map.cpp>
+#include <map.h>
 using namespace std;
 
 int map[30][30];
 
 time_t time1,time2,time3;
+
+
+char get_input(){
+    char input;
+    input = getch();
+    return input;
+}
+
+
+
+
 
 int main(){
     time1 = time(NULL);
@@ -20,16 +32,23 @@ int main(){
     //to be finished and modified into game theorm
     while(1)
     {
+        char input;
         time2 = time(NULL);
-        if (time2 == time1+1){
-            cout <<"1 second passes"<<endl;
-            time1 +=1;
+        if (_kbhit()==1){
+            input = get_input();
+            cout << input <<endl;
+            time1 += 1;
             //print_map();
-            //get_input();
             //snack_go();
             //if(snack_dead()==1){
                 //cout <<"game over!"<<endl;
             //} 
+        }
+        else{
+            if (time2==time1+1){
+                cout << "1 second pass" <<endl;
+                time1 +=1;
+            }
         }
         if (time2 == time3){
             break;
