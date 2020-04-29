@@ -1,14 +1,7 @@
-#include <iostream>
-#include <conio.h>
-#include <time.h>
-#include <windows.h>
-#include <snack.h>
-#include <map.h>
+#include <game.h>
 using namespace std;
 
 int map[30][30];
-
-time_t time1,time2,time3;
 
 
 char get_input(){
@@ -21,7 +14,7 @@ char get_input(){
 
 
 
-int main(){
+int game_execute(){
     time1 = time(NULL);
     time3=time1+10;
     init_map(map);
