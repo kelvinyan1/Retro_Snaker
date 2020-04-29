@@ -38,11 +38,17 @@ int main(){
             input = get_input();
             cout << input <<endl;
             time1 += 1;
-            //print_map();
-            //snack_go();
-            //if(snack_dead()==1){
-                //cout <<"game over!"<<endl;
-            //} 
+            /*if("吃到果子"){
+                eat_flag = 1;(int)
+                score += 1;
+                beam_destroy();
+                beam_generate();
+            }
+            snack_move(input,,*eat_flag);
+
+            if(snack_dead()==1){
+                break;
+            } */
         }
         else{
             if (time2==time1+1){
