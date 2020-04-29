@@ -5,7 +5,8 @@
 //  #                   #
 //  #                   #
 //  #                   #
-//  #####################                 
+//  #####################     
+// snack is something like this : &&&&&&&&&&&&&&&            
 #include <iostream>
 #include <map.h>
 using namespace std;
