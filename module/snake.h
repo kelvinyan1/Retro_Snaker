@@ -19,16 +19,16 @@ enum direction
 
 class snake {
 public:
-    
-    
     body* snake_tail;
     body* snake_head;
+    direction dir;
+    int length;
     
     /*return 1 if snake is dead, 0 otherwise*/
     int snake_dead();      
     
     /*move and make the snake longer*/
-    void snake_move(char ,int *);
+    void snake_move(int &eat_flag);
 
     /*append snake into map*/
     void print_snake(int [30][30]);
