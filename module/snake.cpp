@@ -73,7 +73,7 @@ void snake::snake_move(int &flag_ptr)
     }
 }
 
-void snake::print_snake(int map[30][30])
+void snake::print_snake(char map[30][30])
 {
     body* current = snake_head;
     
@@ -108,4 +108,17 @@ int snake::snake_dead()       //return 1 if snake is dead, 0 otherwise
     {
         return 0;
     }
+}
+
+void snake::snake_change_dir(direction direct)
+{
+    // snake can just turn their head 90 degrees
+    if (direct == UP || direct == DOWN)
+        if (dir == RIGHT || dir == LEFT)
+            dir = direct;
+    
+    else
+        if(dir == UP || dir == DOWN)
+            dir = direct;
+    
 }

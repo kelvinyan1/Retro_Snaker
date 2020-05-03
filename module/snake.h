@@ -31,9 +31,13 @@ public:
     void snake_move(int &eat_flag);
 
     /*append snake into map*/
-    void print_snake(int [30][30]);
+    void print_snake(char [30][30]);
 
+    /*initialize the snake with 4 nodes*/
     void snake_init();
+
+    /*change the direction of the snake*/
+    void snake_change_dir(direction direct);
 };
 
 #endif
