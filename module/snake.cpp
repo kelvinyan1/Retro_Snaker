@@ -108,6 +108,9 @@ int snake::snake_dead()       //return 1 if snake is dead, 0 otherwise
     {
         return 0;
     }
+
+    if (snake_head->body_x == 29 || snake_head->body_x == 0 || snake_head->body_y == 0 || snake_head->body_y == 29)
+        return 1;
 }
 
 void snake::snake_change_dir(direction direct)
