@@ -2,6 +2,19 @@
 using namespace std;
 
 
+/*this is the time delay function, the unit of input should be ms */
+void delay(int time)
+{
+    long init_time=clock(),curr_time;
+    while(1){
+        curr_time = clock();
+        if(curr_time == init_time + time){
+            break;
+        }
+    }
+}
+
+
 char get_input(){
     char input;
     input = getch();
@@ -11,8 +24,6 @@ char get_input(){
 
 
 int game_execute(){
-//    time1 = time(NULL);
-//    time3=time1+10;
 
     char input;
 
@@ -24,7 +35,6 @@ int game_execute(){
     int eat_flag = 0;
 
     //this is the basic game continue function 
-    //time2 set the current time,time1 is the start time, time3 is the default close time 
     //to be finished and modified into game theorm
     while(1)
     {
@@ -32,7 +42,7 @@ int game_execute(){
         if(snak.snake_dead()==1){
             break;
         } 
-//        time2 = time(NULL);
+
         if (_kbhit())
         {
             input = getch();
@@ -44,14 +54,12 @@ int game_execute(){
                 direct = LEFT;
             else if (input == 'd')
                 direct = RIGHT;
-//            else if (input == 12) // pause function
-//                while ()
+
             else if (input == 0x1B) // if hit "esc", quit game
                 break;
             snak.snake_change_dir(direct);
         }
-//        cout << input <<endl;
-//        time1 += 1;
+
         if(snak.snake_head->body_x == be.x && snak.snake_head->body_y == be.y){
             eat_flag = 1;
             score += 1;
@@ -62,17 +70,11 @@ int game_execute(){
         snak.print_snake(map);
         be.beam_print(map);
         print_map(map);
-
+        
+        //delay 500ms
+        delay(500);
         
     }
-//        else{
-//            if (time2==time1+1){
-//                cout << "1 second pass" <<endl;
-//                time1 +=1;
-//           }
-//        }
-//        if (time2 == time3){
-//            break;
-//        }
+
     cout << "your score is "<< score << endl;
 }
