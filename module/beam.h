@@ -1,5 +1,4 @@
 #include <iostream>
-#include <snake.h>
 #include <stdlib.h>
 #include <ctime>
 /*New Feature, to be tested*/
