@@ -13,7 +13,7 @@ void snake::snake_init()
     snake_tail = pbody;
 
     // append 3 bodies
-    for (int i = 0; i < 3; i++)
+    for (int i = 1; i < 4; i++)
     {
         body* ptr = new body();
         ptr->body_y = 13 - i;
@@ -31,7 +31,7 @@ void snake::snake_init()
 
 void snake::snake_move(int &flag_ptr)
 {
-    body* ptr = new body(); // create new a body
+    body* ptr = new body(); // create a new body
 
     // new body's coodinate is determined by previous head position and moving direction
     switch (dir)
@@ -62,10 +62,15 @@ void snake::snake_move(int &flag_ptr)
     }
     
     ptr->previous = snake_head; // link new body to the whole snake
+    snake_head->next = ptr;
+    ptr->next = ptr;
+    
     snake_head = ptr; // set new body as snake head
 
-    if (flag_ptr == 0) // snake head doesn't touch the beam, delete the tail to move forward
+    if (flag_ptr == 0) {// snake head doesn't touch the beam, delete the tail to move forward
         snake_tail = snake_tail->next;
+        snake_tail->previous = snake_tail;
+    }
     else if (flag_ptr == 1) //  snake head touches the beam, length plus 1
     {
         flag_ptr = 0;
@@ -78,27 +83,27 @@ void snake::print_snake(char map[30][30])
     body* current = snake_head;
     
     map[current->body_x][current->body_y] = '*'; // set head as "*"
-    current = current->next;
+    current = current->previous;
 
     // set remain bodies as "&"
     while(current != snake_tail)
     {
         map[current->body_x][current->body_y]='&';
-        current = current->next;
+        current = current->previous;
     }
     map[current->body_x][current->body_y]='&';
 }
 
 int snake::snake_dead()       //return 1 if snake is dead, 0 otherwise
 {   
-    body* current = snake_head;
+    body* current = snake_head->previous;
     while(current != snake_tail)
     {
         if ((current->body_x==snake_head->body_x) &&(current->body_y==snake_head->body_y))
         {
            return 1;
         }
-        current = current->next;
+        current = current->previous;
     }
     if ((current->body_x==snake_head->body_x) &&(current->body_y==snake_head->body_y))
     {

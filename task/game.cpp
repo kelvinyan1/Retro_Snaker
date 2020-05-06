@@ -3,17 +3,13 @@ using namespace std;
 
 
 /*this is the time delay function, the unit of input should be ms */
-void delay(int time)
+void delay(int time)//ms
 {
-    long init_time=clock(),curr_time;
-    while(1){
-        curr_time = clock();
-        if(curr_time == init_time + time){
-            break;
-        }
-    }
+    clock_t init_time=clock();
+    while(clock()<(init_time+time))
+    {}
+      
 }
-
 
 char get_input(){
     char input;
@@ -23,7 +19,7 @@ char get_input(){
 
 
 
-int game_execute(){
+void game_execute(){
 
     char input;
 
@@ -66,7 +62,8 @@ int game_execute(){
             be.beam_generate();
         }
         snak.snake_move(eat_flag);
-
+        
+        init_map(map);
         snak.print_snake(map);
         be.beam_print(map);
         print_map(map);

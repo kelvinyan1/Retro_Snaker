@@ -15,8 +15,8 @@ class beam{
         int y;
 
         //randomly generate the position of the beam
-        int beam_generate();
+        void beam_generate();
 
         //write the beam into the map
-        int beam_print(char map[30][30]);
+        void beam_print(char map[30][30]);
 };
