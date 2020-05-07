@@ -12,18 +12,22 @@ void delay(int time)//ms
       
 }
 
+//initialize snake and beam
+void game_init()
+{
+    snak.snake_init();
+    be.beam_generate();
+    score = 0;
+    eat_flag = 0;
+}
 
 void game_execute(){
 
     char input;
     
-    // initialize map, beam, and snake
+    // initialize map
     char map[30][30];
     init_map(map);
-    int score=0;
-    be.beam_generate();
-    snak.snake_init();
-    int eat_flag = 0;
     be.beam_print(map);
     snak.print_snake(map);
 
@@ -55,7 +59,7 @@ void game_execute(){
                 string ans;
                 cin >> ans;
                 if (ans == "yes"){
-                    save(snak,be,score);
+                    save(snak,be,score,eat_flag);
                 }
                 break;
             snak.snake_change_dir(direct);

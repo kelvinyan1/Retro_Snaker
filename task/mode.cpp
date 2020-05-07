@@ -5,7 +5,7 @@
 #include <fstream>
 using namespace std;
 
-void save(snake skobj,beam bobj,int score)
+void save(snake skobj,beam bobj,int score,int flag)
 {
     string num;
     cout << "number your game, please check documentary \"process\" to find a number doesn't appear"<<endl;
@@ -28,6 +28,7 @@ void save(snake skobj,beam bobj,int score)
 }
 void load()
 {
+    string num;
     cout <<"Which number of process do you want to load?"<<endl;
     cin >> num;
     ifstream fin;

@@ -11,4 +11,7 @@ char map[30][30];
 direction direct;
 snake snak;
 beam be;
+int score;
+int eat_flag;
 void game_execute();
+void game_init();
