@@ -45,6 +45,7 @@ void game_execute(){
         if (_kbhit())
         {
             input = getch();
+            direction direct;
             if (input == 'w')
                 direct = UP;
             else if (input == 's')
@@ -54,7 +55,7 @@ void game_execute(){
             else if (input == 'd')
                 direct = RIGHT;
 
-            else if (input == 0x1B) // if hit "esc", quit game
+            else if (input == 0x1B){ // if hit "esc", quit game
                 cout << "Do you want to save? if so answer yes"<<endl;
                 string ans;
                 cin >> ans;
@@ -62,6 +63,7 @@ void game_execute(){
                     save(snak,be,score,eat_flag);
                 }
                 break;
+            }
             snak.snake_change_dir(direct);
         }
 

@@ -8,7 +8,6 @@
 
 char map[30][30];
 
-direction direct;
 snake snak;
 beam be;
 int score;

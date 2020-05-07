@@ -38,25 +38,28 @@ void snake::snake_move(int &flag_ptr)
     {
     case UP:
     {
-        ptr->body_y = snake_head->body_y - 1;
-        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y;
+        ptr->body_x = snake_head->body_x - 1;
+        break;
     }
     case DOWN:
     {
-        ptr->body_y = snake_head->body_y + 1;
-        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y;
+        ptr->body_x = snake_head->body_x + 1;
+        break;
     }
     case RIGHT:
     {
-        ptr->body_x = snake_head->body_x + 1;
-        ptr->body_y = snake_head->body_y;
+        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y + 1;
+        break;
     }
     case LEFT:
     {
-        ptr->body_x = snake_head->body_x - 1;
-        ptr->body_y = snake_head->body_y;
-    }
+        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y - 1;
         break;
+    }
     default:
         break;
     }

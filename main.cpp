@@ -31,7 +31,7 @@ int main()
                 game_execute();
             }
             else if (bit == 50) // if press "2", change mode
-                mode_change_execute();
+                {}//mode_change_execute();
             else if (bit == 51) // if press "3", open help
                 help_execute();
             else if (bit == 52) // exit game
