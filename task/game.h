@@ -1,16 +1,14 @@
 #include <iostream>
-#include <conio.h>
+#include <conio.h>  //not from standard cpp library
 #include <time.h>
-#include <windows.h>
+#include <windows.h> //only works for windows environment 
 #include <beam.h>
 #include <snake.h>
 #include <map.h>
 
-time_t time1,time2,time3;
-
 char map[30][30];
-beam be;
-snake snak;
-direction direct;
 
-int game_execute();
+direction direct;
+snake snak;
+beam be;
+void game_execute();

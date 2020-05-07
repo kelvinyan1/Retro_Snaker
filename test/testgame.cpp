@@ -1,6 +1,14 @@
+/*
+  this is the game therom for windows environment 
+  in this cpp file we include all the game file inside 
+  we use <conio.h> and <windows.h> to achieve setting time limitation to user input and clear the scream
+*/
+
+
 #include <iostream>
 #include <time.h>
-#include <conio.h>
+#include <conio.h>      //windows only
+#include <windows.h>    //windows only
 
 using namespace std;
 
@@ -33,7 +41,7 @@ void init_map(char map[30][30]){
     for(int i=0;i<30;++i){
         for(int j=0;j<30;++j){
             if(i==0 || j==0 || i==29 || j==29){
-                map[i][j]=i;
+                map[i][j]='#';
             }
             else{
                 map[i][j]=' ';
@@ -130,25 +138,28 @@ void snake::snake_move(int &flag_ptr)
     {
     case UP:
     {
-        ptr->body_y = snake_head->body_y - 1;
-        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y;
+        ptr->body_x = snake_head->body_x - 1;
+        break;
     }
     case DOWN:
     {
-        ptr->body_y = snake_head->body_y + 1;
-        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y;
+        ptr->body_x = snake_head->body_x + 1;
+        break;
     }
     case RIGHT:
     {
-        ptr->body_x = snake_head->body_x + 1;
-        ptr->body_y = snake_head->body_y;
+        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y + 1;
+        break;
     }
     case LEFT:
     {
-        ptr->body_x = snake_head->body_x - 1;
-        ptr->body_y = snake_head->body_y;
-    }
+        ptr->body_x = snake_head->body_x;
+        ptr->body_y = snake_head->body_y - 1;
         break;
+    }
     default:
         break;
     }
@@ -201,31 +212,21 @@ int snake::snake_dead()       //return 1 if snake is dead, 0 otherwise
     {
         return 1;
     }
-    else
-    {
-        return 0;
-    }
-
     if (snake_head->body_x == 29 || snake_head->body_x == 0 || snake_head->body_y == 0 || snake_head->body_y == 29)
         return 1;
+    return 0;
 }
 
 void snake::snake_change_dir(direction ipdir)
 {
     // snake can just turn their head 90 degrees
-    if (dir == UP || dir == DOWN)
-        if (ipdir == RIGHT || ipdir== LEFT)
-        {
-            dir = ipdir;
-            cout << "direction changed"<<endl;
-        }
-    
+    if ((dir==UP&&ipdir==DOWN) || (dir==DOWN&&ipdir==UP) || (dir==LEFT&&ipdir==RIGHT) || (dir==RIGHT&&ipdir==LEFT))
+    {}
     else
-        if(ipdir == UP || ipdir == DOWN)
-        {
-            dir = ipdir;
-            cout << "direction changed"<<endl;
-        }
+    {
+        dir = ipdir;
+    }
+    
 }
 
 
@@ -245,18 +246,17 @@ int main(){
     // initialize map, beam, and snake
     char map[30][30];
     init_map(map);
-    int level=1,score=0;
-    beam be;
-    be.beam_generate();
     snake snak;
+    beam be;
+    int score=0;
+    be.beam_generate();
     snak.snake_init();
     int eat_flag = 0;
     be.beam_print(map);
     snak.print_snake(map);
 
     print_map(map);
-    //this is the basic game continue function 
-    //to be finished and modified into game theorm
+    delay(500);
     while(1)
     {
         
@@ -265,10 +265,10 @@ int main(){
             break;
         } 
 
-        //if (_kbhit())
-        //{
-            //input = getch();
-            cin >> input;
+        if (_kbhit())
+        {
+            input = getch();
+            //cin >> input;
             direction direct;
             if (input == 'w')
                 direct = UP;
@@ -278,11 +278,11 @@ int main(){
                 direct = LEFT;
             else if (input == 'd')
                 direct = RIGHT;
-
             //else if (input == 0x1B) // if hit "esc", quit game
                 //break;
+            
             snak.snake_change_dir(direct);
-        //}
+        }
 
         if(snak.snake_head->body_x == be.x && snak.snake_head->body_y == be.y){
             eat_flag = 1;
@@ -294,6 +294,8 @@ int main(){
         init_map(map);
         snak.print_snake(map);
         be.beam_print(map);
+
+        system("cls");
         print_map(map);
         
         //delay 500ms

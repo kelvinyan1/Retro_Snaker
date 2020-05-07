@@ -26,8 +26,9 @@ int main()
         {
             int bit;
             bit = _getch();
-            if (bit == 49) // if press "1", start game
+            if (bit == 49){ // if press "1", start game
                 game_execute();
+            }
             else if (bit == 50) // if press "2", change mode
                 mode_change_execute();
             else if (bit == 51) // if press "3", open help

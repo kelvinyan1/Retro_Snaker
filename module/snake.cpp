@@ -109,24 +109,19 @@ int snake::snake_dead()       //return 1 if snake is dead, 0 otherwise
     {
         return 1;
     }
-    else
-    {
-        return 0;
-    }
-
     if (snake_head->body_x == 29 || snake_head->body_x == 0 || snake_head->body_y == 0 || snake_head->body_y == 29)
         return 1;
+    return 0;
 }
 
-void snake::snake_change_dir(direction direct)
+void snake::snake_change_dir(direction ipdir)
 {
     // snake can just turn their head 90 degrees
-    if (direct == UP || direct == DOWN)
-        if (dir == RIGHT || dir == LEFT)
-            dir = direct;
-    
+    if ((dir==UP&&ipdir==DOWN) || (dir==DOWN&&ipdir==UP) || (dir==LEFT&&ipdir==RIGHT) || (dir==RIGHT&&ipdir==LEFT))
+    {}
     else
-        if(dir == UP || dir == DOWN)
-            dir = direct;
+    {
+        dir = ipdir;
+    }
     
 }
