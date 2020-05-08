@@ -1,9 +1,9 @@
 #include <iostream>
 #include <conio.h>  //not from standard cpp library
 #include <time.h>
-#include <beam.h>
-#include <snake.h>
-#include <map.h>
+#include "beam.h"
+#include "snake.h"
+#include "map.h"
 
 char map[30][30];
 

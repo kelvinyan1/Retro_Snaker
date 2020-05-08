@@ -1,4 +1,4 @@
-#include <snake.h>
+#include "snake.h"
 void snake::snake_init()
 {
     // initialize the first body's infomation

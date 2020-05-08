@@ -1,4 +1,4 @@
-#include <beam.h>
+#include "beam.h"
 using namespace std;
 
 void beam::beam_generate()
