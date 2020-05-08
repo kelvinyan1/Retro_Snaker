@@ -90,4 +90,5 @@ void game_execute(){
         
     }
     cout << "your score is "<< score << endl;
+    system("pause");
 }

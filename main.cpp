@@ -16,7 +16,8 @@ int main()
             <<"1  start game"<<endl
             <<"2  mode(load your history gamestate)"<<endl
             <<"3  help"<<endl
-            <<"4  exit"<<endl;
+            <<"4  exit"<<endl<<endl
+            <<"warning: !! Do not open \"caps lock\" !!"<<endl;
 
         while (!_kbhit()) // if hitting detected, then execute following
         {
