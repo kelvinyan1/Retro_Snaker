@@ -56,11 +56,15 @@ void game_execute(){
                 direct = RIGHT;
 
             else if (input == 0x1B){ // if hit "esc", quit game
-                cout << "Do you want to save? if so answer yes"<<endl;
+                cout << "Do you want to save? "<<endl;
+                cout << "Note that your history file will be overwrite "<<endl;
+                cout << "if so answer yes"<<endl;
                 string ans;
                 cin >> ans;
                 if (ans == "yes"){
                     save(snak,be,score,eat_flag);
+                    cout <<"successfully saved"<<endl;
+                    delay(500);
                 }
                 break;
             }
@@ -78,14 +82,12 @@ void game_execute(){
         snak.print_snake(map);
         be.beam_print(map);
         
-        //need to clear the scream by printf("\033[2J");
-        //need to hide the cursor by printf("\033[?251")
+        system("clear");//clear the screem in linux
         print_map(map);
         
         //delay 500ms
         delay(500);
         
     }
-    //need to show the cursor by printf("\033[?25h")
     cout << "your score is "<< score << endl;
 }

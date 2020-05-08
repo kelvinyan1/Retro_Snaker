@@ -5,7 +5,7 @@ void help_execute()
 {
     while (1)
     {
-        system("cls");
+        system("clear");//clear the screem in linux
         cout<<"-------------Help----------------"
             <<"W: up       S: down"<<endl
             <<"A: left     D: right"<<endl

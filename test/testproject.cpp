@@ -1,8 +1,13 @@
+// This is the test cpp file for us to debug in windows
+//
+//
+
 #include <iostream>
 #include <conio.h>
 #include <string>
 #include <fstream>
 #include <time.h>
+#include <windows.h>
 using namespace std;
 
 int score;
@@ -253,31 +258,90 @@ void print_map(char map[30][30]){
 /*save & load*/
 void save(snake skobj,beam bobj,int score,int flag)
 {
-    string num;
-    cout << "number your game, please check documentary \"process\" to find a number doesn't appear"<<endl;
-    cin >> num;
     ofstream fout;
-    fout.open("process"+num+".txt");
+    fout.open("process.txt");
     body *current= skobj.snake_head; 
     while(current != skobj.snake_tail){
         fout << current->body_x << ' ';
+        current=current->previous;
     }
-    fout <<endl;
-    while(current != skobj.snake_tail){
+    fout<<current->body_x<<' '<<30<<' ';//30 will not appear in map, so it can act as separater
+    while(current != skobj.snake_head){
         fout << current->body_y << ' ';
+        current=current->next;
     }
-    fout <<endl;
-    fout << bobj.x <<' '<<bobj.y;
-    fout <<endl;
-    fout <<score;
+    fout<<current->body_y<<' '<<30<< ' ';// the same as above
+    fout << bobj.x <<' '<<bobj.y << ' ';
+    fout <<score << ' '<<flag << ' ';
+    switch (skobj.dir)
+    {
+    case UP:
+        fout << 0;
+        break;
+    case DOWN:
+        fout << 1;
+        break;
+    case LEFT:
+        fout << 2;
+        break;
+    case RIGHT:
+        fout << 3;
+        break;
+    default:
+        break;
+    }
+    
     fout.close();
 }
 void load()
 {
-    string num;
-    cout <<"Which number of process do you want to load?"<<endl;
-    cin >> num;
     ifstream fin;
+    fin.open("process.txt");
+    int fromfile,count=1;
+    fin >> fromfile;
+    body *pbody = new body;
+    pbody->body_x = fromfile;
+    snak.snake_head=pbody;
+    fin >> fromfile;
+    while (fromfile!=30)
+    {
+        body *ptr = new body;
+        ptr->body_x=fromfile;
+        pbody->previous = ptr;
+        ptr->next = pbody;
+        pbody = ptr;
+        count+=1;
+        fin >> fromfile;
+    }
+    snak.snake_tail = pbody;
+    fin >> fromfile;
+    while(fromfile !=30)
+    {
+        pbody->body_y = fromfile;
+        pbody = pbody->next;
+        fin >> fromfile;
+    }
+    fin >>be.x >> be.y >>score >> eat_flag;
+    int dir;
+    fin >> dir;
+    switch (dir)
+    {
+    case 0:
+        snak.dir = UP;
+        break;
+    case 1:
+        snak.dir = DOWN;
+        break;
+    case 2:
+        snak.dir = LEFT;
+        break;
+    case 3:
+        snak.dir = RIGHT;
+        break;
+    default:
+        break;
+    }
+    fin.close();
 }
 
 
@@ -325,11 +389,16 @@ void game_execute(){
             else if (input == 'd')
                 direct = RIGHT;
             else if (input == 0x1B){// if hit "esc", quit game
-                cout << "Do you want to save? if so answer yes"<<endl;
+                cout << "Do you want to save? "<<endl;
+                cout << "Note that your history file will be overwrite "<<endl;
+                cout << "if so answer yes"<<endl;
                 string ans;
                 cin >> ans;
-                if (ans == "yes"){
+                if (ans == "yes")
+                {
                     save(snak,be,score,eat_flag);
+                    cout << "successfully saved "<<endl;
+                    delay(500);
                 }
                 break;
             }
@@ -347,15 +416,13 @@ void game_execute(){
         snak.print_snake(map);
         be.beam_print(map);
         
-        //need to clear the scream by printf("\033[2J");
-        //need to hide the cursor by printf("\033[?251")
+        system("cls");
         print_map(map);
         
         //delay 500ms
         delay(500);
         
     }
-    //need to show the cursor by printf("\033[?25h")
     cout << "your score is "<< score << endl;
     delay(1000);
 }
@@ -401,7 +468,7 @@ int main()
             <<"/---Welcome to Eating Snake---/"<<endl
             <<"-------------------------------"<<endl<<endl
             <<"1  start game"<<endl
-            <<"2  mode"<<endl
+            <<"2  mode(load your history gamestate)"<<endl
             <<"3  help"<<endl
             <<"4  exit"<<endl;
 
@@ -418,7 +485,10 @@ int main()
                 game_execute();
             }
             else if (bit == 50) // if press "2", change mode
-            {} //  mode_change_execute();
+            {
+                load();
+                game_execute();
+            } 
             else if (bit == 51) // if press "3", open help
                 help_execute();
             else if (bit == 52) // exit game
@@ -427,5 +497,4 @@ int main()
     }
 
     cout<<"successfully quit!"<<endl;
-    system("pause");
 }
