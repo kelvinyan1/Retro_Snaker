@@ -41,6 +41,8 @@ We use this library to track players input(using kbhit() and getch())
 With it's help, we can let user only press keyboard to control the snake (instead of pressing enter)
 When user doesn't tpye, we can still make the snake move instead of waiting until player input something.
 
+!! If makefile somehow doesn't work, the file called "project.cpp" can run the whole function.
+
 
 
 
