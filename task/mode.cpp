@@ -1,8 +1,4 @@
-#include <mode.h>
-#include <game.h>
-#include <string>
-#include <iostream>
-#include <fstream>
+#include "mode.h"
 using namespace std;
 
 void save(snake skobj,beam bobj,int score,int flag)
