@@ -1,8 +1,8 @@
 #include <iostream>
-#include <game.h>
-#include <mode.h>
-#include <help.h>
-#include <conio.h>
+#include "game.h"
+#include "mode.h"
+#include "help.h"
+#include "conio.h"
 using namespace std;
 
 int main()

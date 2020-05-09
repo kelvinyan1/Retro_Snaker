@@ -8,8 +8,8 @@ main.o: main.cpp game.h help.h mode.h
 game.o: game.cpp game.h snake.h beam.h map.h
 		g++ -c game.cpp $(FLAG)
 help.o: help.cpp help.h
-		g++ -c heli.cpp $(FLAG)
-mode.o: mode.cpp mode.h
+		g++ -c help.cpp $(FLAG)
+mode.o: mode.cpp mode.h game.h
 		g++ -c mode.cpp $(FLAG)
 snake.o: snake.cpp snake.h
 		g++ -c snake.cpp $(FLAG) 
